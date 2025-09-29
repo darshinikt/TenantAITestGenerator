@@ -1,0 +1,34 @@
+{
+  "name": "ai-test-case-generator",
+  "version": "1.0.0",
+  "description": "AI-powered Test Case Generator for Tenant Management Systems",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "generate": "node src/generator.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "ai",
+    "test-automation",
+    "tenant-management",
+    "playwright",
+    "test-generation"
+  ],
+  "author": "AI Agent MCP",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "openai": "^4.20.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
