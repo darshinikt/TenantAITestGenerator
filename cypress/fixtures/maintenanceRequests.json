@@ -1,0 +1,59 @@
+[
+  {
+    "id": "maint_001",
+    "title": "Leaky Kitchen Faucet",
+    "description": "Kitchen faucet has been dripping constantly for the past week",
+    "priority": "medium",
+    "status": "open",
+    "category": "plumbing",
+    "createdDate": "2025-09-28",
+    "updatedDate": "2025-09-28",
+    "unitId": "unit_001",
+    "tenantId": 1,
+    "assignedTo": null,
+    "photos": [
+      {
+        "id": "photo_001",
+        "url": "/uploads/maintenance/faucet-leak.jpg",
+        "filename": "faucet-leak.jpg"
+      }
+    ]
+  },
+  {
+    "id": "maint_002",
+    "title": "AC Not Working Properly",
+    "description": "Air conditioning unit not cooling the apartment effectively",
+    "priority": "high",
+    "status": "in-progress",
+    "category": "hvac",
+    "createdDate": "2025-09-29",
+    "updatedDate": "2025-09-30",
+    "unitId": "unit_001",
+    "tenantId": 1,
+    "assignedTo": {
+      "id": 5,
+      "name": "Mike Johnson",
+      "role": "maintenance_staff"
+    },
+    "photos": []
+  },
+  {
+    "id": "maint_003",
+    "title": "Broken Light Fixture",
+    "description": "Main bathroom light fixture is flickering and needs replacement",
+    "priority": "low",
+    "status": "completed",
+    "category": "electrical",
+    "createdDate": "2025-09-25",
+    "updatedDate": "2025-09-27",
+    "unitId": "unit_001",
+    "tenantId": 1,
+    "assignedTo": {
+      "id": 6,
+      "name": "Sarah Wilson",
+      "role": "maintenance_staff"
+    },
+    "photos": [],
+    "completionNotes": "Replaced light fixture with new LED fixture. Issue resolved."
+  }
+]
