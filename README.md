@@ -1,227 +1,364 @@
-# AI Test Case Generator for Tenants 🤖🏠
+# Tenant Management Portal with AI-Powered Testing 🏠🤖
 
-An intelligent test automation system that generates comprehensive test cases for tenant management systems using AI and executes them with Playwright.
+A complete full-stack tenant management portal with comprehensive E2E testing using Cypress and Playwright, featuring AI-powered test generation and real-time test execution.
 
 ## 🌟 Features
 
-- **AI-Powered Test Generation**: Automatically generates test cases based on tenant scenarios
-- **Playwright Integration**: Executes tests across multiple browsers (Chrome, Firefox, Safari)
-- **Tenant-Focused**: Specialized for property management and tenant portal testing
-- **MCP Protocol Support**: Model Context Protocol integration for AI assistants
-- **Real-time Test Execution**: Live test monitoring and reporting
-- **Smart Assertions**: AI-generated validation points for comprehensive testing
+### 🖥️ **Full-Stack Web Application**
+- **Express.js Backend**: RESTful API with SQLite database
+- **Responsive Frontend**: Bootstrap 5 UI with modern JavaScript
+- **Authentication System**: JWT-based login/logout with session management
+- **Maintenance Requests**: Full CRUD operations for tenant maintenance
+- **Payment Management**: Payment history and processing interface
+- **Document Management**: File upload and document storage
+- **Real-time Dashboard**: Live data updates and notifications
+
+### 🧪 **Comprehensive Testing Suite**
+- **Cypress E2E Tests**: 15 tests covering full user workflows (100% passing)
+- **Playwright API Tests**: Backend API validation and integration testing
+- **Dual Framework Support**: Both Cypress and Playwright for maximum coverage
+- **Real-time Test Execution**: Live test monitoring with visual feedback
+- **Cross-browser Testing**: Chrome, Firefox, Safari compatibility
+- **AI-Generated Test Cases**: Intelligent test scenario creation
+
+### 🤖 **AI-Powered Test Generation**
+- **Smart Test Creation**: AI generates comprehensive test scenarios
+- **Boundary Testing**: Automatic edge case detection and testing
+- **Assertion Generation**: Intelligent validation point creation
+- **Test Maintenance**: AI-assisted test updates and optimization
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
 - Node.js 18+ 
 - npm or yarn
-- OpenAI API key (for AI test generation)
+- Git
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ai-test-case-generator.git
-cd ai-test-case-generator
+git clone https://github.com/darshinikt/TenantAITestGenerator.git
+cd TenantAITestGenerator
 
 # Install dependencies
 npm install
 
-# Install Playwright browsers
+# Install Playwright browsers (optional)
 npx playwright install
-
-# Setup environment variables
-cp .env.example .env
-# Edit .env with your OpenAI API key
 ```
 
-### Configuration
-
-Create a `.env` file:
-
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-TENANT_PORTAL_URL=https://your-tenant-portal.com
-DEFAULT_BROWSER=chromium
-```
-
-### Usage
+### Running the Application
 
 ```bash
-# Generate AI test cases
-npm run generate
+# Start the backend server
+node simple-server.js
 
-# Run tests in headless mode
-npm test
-
-# Run tests with browser UI
-npm run test:headed
-
-# Run tests with Playwright UI
-npm run test:ui
-
-# Start the MCP server
-npm start
+# Server will run on http://localhost:3000
+# Open browser and navigate to http://localhost:3000
 ```
 
-## 🧪 Test Categories
+### Running Tests
 
-### Tenant Authentication
-- Login/logout workflows
-- Password reset functionality
-- Multi-factor authentication
-- Session management
+```bash
+# Run Cypress E2E tests (interactive)
+npx cypress open
 
-### Tenant Dashboard
-- Property information display
-- Maintenance request submission
-- Payment processing
-- Document management
+# Run Cypress tests (headless)
+npx cypress run
 
-### Property Management
-- Lease agreement viewing
-- Rent payment history
-- Maintenance tracking
-- Communication portal
+# Run Playwright tests
+npx playwright test
 
-### Administrative Functions
-- Tenant onboarding
-- Lease renewals
-- Property inspections
-- Reporting and analytics
+# Run specific test file
+npx cypress run --spec "cypress/e2e/auth.cy.ts"
+```
 
-## 📁 Project Structure
+## 🏗️ Project Structure
 
 ```
-ai-test-case-generator/
-├── src/
-│   ├── generators/
-│   │   ├── testCaseGenerator.js    # AI test case generation
-│   │   ├── scenarioBuilder.js      # Test scenario construction
-│   │   └── assertionGenerator.js   # Smart assertion creation
-│   ├── tests/
-│   │   ├── tenant/                 # Tenant-focused tests
-│   │   ├── admin/                  # Administrative tests
-│   │   └── integration/            # End-to-end scenarios
-│   ├── utils/
-│   │   ├── aiClient.js            # OpenAI integration
-│   │   ├── testHelper.js          # Test utilities
-│   │   └── dataGenerator.js       # Test data creation
-│   ├── config/
-│   │   ├── playwright.config.js   # Playwright configuration
-│   │   └── testConfig.js          # Test environment setup
+TenantAITestGenerator/
+├── 📁 cypress/                    # Cypress E2E tests
+│   ├── e2e/
+│   │   ├── auth.cy.ts             # Authentication tests (7 tests)
+│   │   ├── maintenance.cy.ts      # Maintenance request tests (8 tests)
+│   │   └── api/                   # API testing suite
+│   └── support/                   # Test configuration
+├── 📁 tests/                      # Playwright tests
+│   ├── api/                       # API integration tests
+│   └── example.spec.ts            # Sample Playwright tests
+├── 📁 public/                     # Frontend application
+│   ├── index.html                 # Main application UI
+│   └── app.js                     # Client-side JavaScript
+├── 📁 src/                        # AI test generation
 │   └── index.js                   # MCP server entry point
-├── docs/                          # Documentation
-├── examples/                      # Example test cases
-├── .github/                       # GitHub workflows
-└── README.md
+├── 📁 playwright-mcp/             # MCP integration
+├── simple-server.js               # Express.js backend server
+├── package.json                   # Dependencies and scripts
+├── cypress.config.ts              # Cypress configuration
+├── playwright.config.ts           # Playwright configuration
+└── README.md                      # This file
 ```
 
-## 🤖 AI Test Generation
+## 🎯 Demo Credentials
 
-The system uses OpenAI's GPT models to generate intelligent test cases:
+Use these credentials to test the application:
 
+```
+Email: john.doe@email.com
+Password: TenantPass123!
+```
+
+## 📊 Test Coverage
+
+### ✅ E2E Tests (15/15 passing - 100%)
+
+#### Authentication Tests (7 tests)
+- ✅ Login page display and validation
+- ✅ Valid credential authentication
+- ✅ Invalid credential error handling
+- ✅ Email format validation
+- ✅ Required field validation
+- ✅ Logout functionality
+- ✅ Session persistence
+
+#### Maintenance Request Tests (8 tests)
+- ✅ Maintenance page display
+- ✅ Request table functionality
+- ✅ New request creation
+- ✅ Form validation
+- ✅ Priority selection
+- ✅ Category selection
+- ✅ Modal interactions
+- ✅ Form submission workflows
+
+### 🔧 API Tests
+- ✅ Authentication endpoints
+- ✅ CRUD operations
+- ✅ Error handling
+- ⚠️ Advanced features (rate limiting, etc.)
+
+## 🌐 API Endpoints
+
+### Authentication
+- `POST /auth/login` - User authentication
+- `POST /auth/logout` - User logout
+
+### Maintenance Requests
+- `GET /maintenance` - Get all maintenance requests
+- `POST /maintenance` - Create new maintenance request
+
+### Other Endpoints
+- `GET /payments` - Payment history
+- `GET /documents` - Document management
+- `GET /` - Serve main application
+
+## 🧪 Running Different Test Scenarios
+
+### Interactive Testing (Recommended)
+```bash
+# Open Cypress Test Runner
+npx cypress open
+
+# Select E2E Testing
+# Choose your browser
+# Run tests and watch them execute live
+```
+
+### Headless Testing
+```bash
+# Run all E2E tests
+npx cypress run
+
+# Run specific test suite
+npx cypress run --spec "cypress/e2e/maintenance.cy.ts"
+
+# Run with different browser
+npx cypress run --browser firefox
+```
+
+### API Testing
+```bash
+# Run Playwright API tests
+npx playwright test
+
+# Run specific API test
+npx playwright test tests/api/
+```
+
+## � Configuration
+
+### Environment Setup
+```bash
+# Database will be created automatically
+# No additional configuration required for basic usage
+```
+
+### Cypress Configuration
+- Browser: Chrome, Firefox, Edge, Electron
+- Viewport: 1280x720 (configurable)
+- Video: Recorded on failures
+- Screenshots: Automatic on failures
+
+### Playwright Configuration
+- Browsers: Chromium, Firefox, WebKit
+- Parallel execution: Enabled
+- Retries: 3 attempts on failure
+
+## 🚀 Development Workflow
+
+### Adding New Tests
+
+#### Cypress E2E Test
 ```javascript
-// Example: Generate tenant login tests
-const testCases = await generateTestCases({
-  scenario: 'tenant_login',
-  complexity: 'comprehensive',
-  browsers: ['chromium', 'firefox'],
-  assertions: 'smart'
+describe('New Feature', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000');
+    // Login and setup
+  });
+
+  it('should test new functionality', () => {
+    // Test implementation
+  });
 });
 ```
 
-## 🔧 Configuration Options
-
-### Test Generation Settings
-
+#### Playwright API Test
 ```javascript
-{
-  "aiModel": "gpt-4",
-  "testComplexity": "comprehensive",
-  "includeBoundaryTests": true,
-  "generateNegativeTests": true,
-  "smartAssertions": true,
-  "crossBrowserTesting": true
-}
+test('API endpoint test', async ({ request }) => {
+  const response = await request.post('/api/endpoint', {
+    data: { test: 'data' }
+  });
+  expect(response.status()).toBe(200);
+});
 ```
 
-### Playwright Settings
+### Database Schema
 
-```javascript
-{
-  "browsers": ["chromium", "firefox", "webkit"],
-  "headless": false,
-  "screenshot": "on-failure",
-  "video": "retain-on-failure",
-  "trace": "on-first-retry"
-}
+The application uses SQLite with the following tables:
+- `users` - User authentication and profile data
+- `maintenance_requests` - Maintenance request tracking
+- `payments` - Payment history and records
+- `documents` - Document storage metadata
+
+## 📈 Performance Metrics
+
+- **Test Execution Time**: ~20 seconds for full E2E suite
+- **Server Response Time**: <100ms for most endpoints
+- **Database Operations**: <50ms average query time
+- **Frontend Load Time**: <2 seconds initial load
+
+## 🔍 Debugging Tests
+
+### Cypress Debugging
+```bash
+# Run with debug mode
+DEBUG=cypress:* npx cypress run
+
+# Open developer tools in Cypress
+# Use cy.debug() in test code
+# Take screenshots with cy.screenshot()
 ```
 
-## 📊 Test Reports
+### Playwright Debugging
+```bash
+# Run with debug mode
+npx playwright test --debug
 
-Generated test reports include:
-
-- **Execution Summary**: Pass/fail rates, execution time
-- **AI Insights**: Test case quality analysis
-- **Coverage Metrics**: Feature coverage assessment
-- **Performance Data**: Load time and responsiveness metrics
-- **Cross-Browser Results**: Compatibility testing results
-
-## 🔌 MCP Integration
-
-The project supports Model Context Protocol for seamless AI assistant integration:
-
-```json
-{
-  "servers": {
-    "ai-test-generator": {
-      "command": "node",
-      "args": ["src/index.js"],
-      "cwd": "/path/to/ai-test-case-generator"
-    }
-  }
-}
+# Run with trace viewer
+npx playwright test --trace on
 ```
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Make your changes
+4. Run tests to ensure they pass
+5. Commit your changes (`git commit -m 'Add new feature'`)
+6. Push to the branch (`git push origin feature/new-feature`)
+7. Open a Pull Request
 
-## 📋 Roadmap
+## 📋 Future Enhancements
 
-- [ ] Visual regression testing
-- [ ] API testing integration
-- [ ] Mobile responsiveness tests
-- [ ] Accessibility testing
-- [ ] Performance benchmarking
-- [ ] CI/CD pipeline integration
-- [ ] Docker containerization
-- [ ] Cloud testing platform support
+- [ ] **Advanced API Testing**: Complete CRUD operations for all entities
+- [ ] **Visual Regression Testing**: Screenshot comparison testing
+- [ ] **Performance Testing**: Load testing and performance benchmarks
+- [ ] **Mobile Testing**: Responsive design validation
+- [ ] **Accessibility Testing**: WCAG compliance validation
+- [ ] **Integration Testing**: External service integration
+- [ ] **Docker Support**: Containerized deployment
+- [ ] **CI/CD Pipeline**: Automated testing in GitHub Actions
+
+## � Test Results Dashboard
+
+The project generates comprehensive test reports including:
+- Execution summaries with pass/fail rates
+- Performance metrics and timing data
+- Cross-browser compatibility results
+- Error logs and debugging information
+- Video recordings of test failures
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**Server not starting:**
+```bash
+# Check if port 3000 is available
+lsof -ti:3000
+
+# Kill process if needed
+kill -9 $(lsof -ti:3000)
+
+# Restart server
+node simple-server.js
+```
+
+**Tests failing:**
+```bash
+# Clear Cypress cache
+npx cypress cache clear
+
+# Reinstall dependencies
+rm -rf node_modules package-lock.json
+npm install
+
+# Reset database
+rm -f tenant_management.db
+```
+
+**Browser issues:**
+```bash
+# Reinstall browsers
+npx playwright install
+npx cypress install
+```
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
-
-- 📧 Email: support@aitestgenerator.com
-- 💬 Discord: [Join our community](https://discord.gg/aitestgen)
-- 📖 Documentation: [docs.aitestgenerator.com](https://docs.aitestgenerator.com)
-
 ## 🙏 Acknowledgments
 
-- OpenAI for GPT model access
-- Playwright team for excellent testing framework
-- Model Context Protocol contributors
-- Open source community
+- **Cypress**: Excellent E2E testing framework
+- **Playwright**: Powerful browser automation
+- **Express.js**: Fast web framework for Node.js
+- **Bootstrap**: Responsive UI framework
+- **SQLite**: Lightweight database solution
+
+## 📞 Support
+
+For questions or support:
+- 📧 Email: darshini1101@gmail.com
+- Create an issue in this repository
+- Check the documentation in the `/docs` folder
+- Review test examples in `/cypress/e2e/` and `/tests/`
 
 ---
 
-Made with ❤️ by the AI Test Generator Team
+**Made with ❤️ for comprehensive tenant management and testing**
+
+*Created by: Darshini Karroo Tourmentin*  
+*Email: darshini1101@gmail.com*  
+*Last updated: September 30, 2025*

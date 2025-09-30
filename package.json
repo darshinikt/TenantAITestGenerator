@@ -1,37 +1,47 @@
 {
-  "name": "ai-test-case-generator",
-  "version": "1.0.0",
-  "description": "AI-powered Test Case Generator for Tenant Management Systems",
-  "main": "src/index.js",
+  "name": "tenant-ai-test-generator",
+  "version": "2.0.0",
+  "description": "Full-stack Tenant Management Portal with AI-powered testing using Cypress and Playwright",
+  "main": "simple-server.js",
   "scripts": {
-    "test": "npm run test:playwright",
+    "start": "node simple-server.js",
+    "dev": "nodemon simple-server.js",
+    "test": "npm run test:cypress",
+    "test:cypress": "cypress run",
+    "test:cypress:open": "cypress open",
     "test:playwright": "playwright test",
     "test:playwright:headed": "playwright test --headed",
     "test:playwright:ui": "playwright test --ui",
-    "test:cypress": "cypress run",
-    "test:cypress:open": "cypress open",
-    "test:cypress:headed": "cypress run --headed",
-    "test:both": "concurrently \"npm run test:playwright\" \"npm run test:cypress\"",
-    "test:parallel": "npm run test:both",
-    "generate": "node src/generator.js",
-    "generate:cypress": "node src/generators/cypressGenerator.js",
-    "generate:playwright": "node src/generators/playwrightGenerator.js",
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "setup": "npm install && npx playwright install && npx cypress install",
-    "reports:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/merged.json",
-    "reports:generate": "marge cypress/reports/merged.json --reportDir cypress/reports --inline",
-    "reports": "npm run reports:merge && npm run reports:generate"
+    "test:api": "playwright test tests/api/",
+    "test:e2e": "cypress run",
+    "test:all": "npm run test:cypress && npm run test:playwright",
+    "setup": "npm install && npx playwright install",
+    "clean": "rm -rf cypress/videos cypress/screenshots test-results playwright-report",
+    "reset-db": "rm -f tenant_management.db"
   },
   "keywords": [
-    "ai",
-    "test-automation",
     "tenant-management",
-    "playwright",
-    "test-generation"
+    "full-stack",
+    "express",
+    "sqlite",
+    "cypress",
+    "playwright", 
+    "e2e-testing",
+    "api-testing",
+    "ai-testing",
+    "property-management",
+    "test-automation"
   ],
-  "author": "AI Agent MCP",
+  "author": "Darshini Karroo Tourmentin <darshini1101@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darshinikt/TenantAITestGenerator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darshinikt/TenantAITestGenerator/issues"
+  },
+  "homepage": "https://github.com/darshinikt/TenantAITestGenerator#readme",
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "cypress": "^13.6.0",
@@ -48,6 +58,13 @@
     "openai": "^4.20.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1",
+    "multer": "^1.4.5-lts.1"
   }
 }

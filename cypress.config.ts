@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'http://localhost:3000',
     viewportWidth: 1280,
     viewportHeight: 720,
     video: true,
@@ -29,7 +29,7 @@ export default defineConfig({
     env: {
       coverage: false,
       codeCoverage: {
-        url: 'http://localhost:3001/__coverage__'
+        url: 'http://localhost:3000/__coverage__'
       }
     },
     
@@ -66,11 +66,5 @@ export default defineConfig({
     },
     specPattern: 'src/**/*.cy.{js,jsx,ts,tsx}',
     indexHtmlFile: 'cypress/support/component-index.html'
-  },
-  
-  // Reporter configuration
-  reporter: 'cypress-multi-reporters',
-  reporterOptions: {
-    configFile: 'cypress/reporter-config.json'
   }
 })

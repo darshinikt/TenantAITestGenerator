@@ -4,6 +4,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Database
+*.db
+*.sqlite
+*.sqlite3
+tenant_management.db
+
 # Environment variables
 .env
 .env.local
@@ -15,6 +21,9 @@ yarn-error.log*
 test-results/
 playwright-report/
 coverage/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
 
 # Logs
 *.log
@@ -56,3 +65,16 @@ out/
 # Cache
 .cache/
 .parcel-cache/
+
+# Lock files (keep package-lock.json)
+yarn.lock
+pnpm-lock.yaml
+
+# Local configuration
+config.local.js
+config.local.json
+
+# SSL certificates
+*.pem
+*.key
+*.crt
