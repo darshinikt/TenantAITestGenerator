@@ -1,7 +1,7 @@
 {
   "name": "tenant-ai-test-generator",
   "version": "2.0.0",
-  "description": "Full-stack Tenant Management Portal with AI-powered testing using Cypress and Playwright",
+  "description": "Full-stack Tenant Management Portal with AI-powered testing using Cypress and Playwright. Easy one-command demo: npm run demo",
   "main": "simple-server.js",
   "scripts": {
     "start": "node simple-server.js",
@@ -17,7 +17,11 @@
     "test:all": "npm run test:cypress && npm run test:playwright",
     "setup": "npm install && npx playwright install",
     "clean": "rm -rf cypress/videos cypress/screenshots test-results playwright-report",
-    "reset-db": "rm -f tenant_management.db"
+    "reset-db": "rm -f tenant_management.db",
+    "demo": "concurrently \"npm start\" \"sleep 3 && npx cypress open\"",
+    "test:quick": "concurrently \"npm start\" \"sleep 4 && npx cypress run --spec cypress/e2e/auth.cy.ts\"",
+    "run:cypress": "concurrently \"npm start\" \"sleep 3 && npx cypress open\"",
+    "run:tests": "concurrently \"npm start\" \"sleep 4 && npx cypress run\""
   },
   "keywords": [
     "tenant-management",

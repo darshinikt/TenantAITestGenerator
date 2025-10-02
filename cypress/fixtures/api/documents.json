@@ -1,0 +1,82 @@
+[
+  {
+    "id": "doc_001",
+    "name": "Lease Agreement",
+    "type": "lease",
+    "description": "Official lease agreement for unit A101",
+    "url": "/documents/lease_agreement_A101.pdf",
+    "uploadDate": "2025-01-01",
+    "size": 2048576,
+    "mimeType": "application/pdf",
+    "status": "active",
+    "uploadedBy": {
+      "id": "admin_001",
+      "name": "Property Manager",
+      "role": "admin"
+    }
+  },
+  {
+    "id": "doc_002",
+    "name": "Move-in Inspection Report",
+    "type": "inspection",
+    "description": "Initial property condition report",
+    "url": "/documents/movein_inspection_A101.pdf",
+    "uploadDate": "2025-01-01",
+    "size": 1536000,
+    "mimeType": "application/pdf",
+    "status": "active",
+    "uploadedBy": {
+      "id": "admin_001",
+      "name": "Property Manager",
+      "role": "admin"
+    }
+  },
+  {
+    "id": "doc_003",
+    "name": "Rental Insurance Certificate",
+    "type": "insurance",
+    "description": "Proof of rental insurance coverage",
+    "url": "/documents/insurance_cert_john_doe.pdf",
+    "uploadDate": "2025-01-15",
+    "size": 1024000,
+    "mimeType": "application/pdf",
+    "status": "active",
+    "uploadedBy": {
+      "id": "tenant_001",
+      "name": "John Doe",
+      "role": "tenant"
+    }
+  },
+  {
+    "id": "doc_004",
+    "name": "Parking Agreement",
+    "type": "addendum",
+    "description": "Additional parking space agreement",
+    "url": "/documents/parking_agreement_A101.pdf",
+    "uploadDate": "2025-02-01",
+    "size": 512000,
+    "mimeType": "application/pdf",
+    "status": "active",
+    "uploadedBy": {
+      "id": "admin_001",
+      "name": "Property Manager",
+      "role": "admin"
+    }
+  },
+  {
+    "id": "doc_005",
+    "name": "September 2025 Rent Receipt",
+    "type": "receipt",
+    "description": "Payment receipt for September 2025 rent",
+    "url": "/receipts/sept_2025_receipt.pdf",
+    "uploadDate": "2025-09-01",
+    "size": 256000,
+    "mimeType": "application/pdf",
+    "status": "active",
+    "uploadedBy": {
+      "id": "system",
+      "name": "Payment System",
+      "role": "system"
+    }
+  }
+]

@@ -25,6 +25,9 @@ export default defineConfig({
       openMode: 0
     },
     
+    // Disable baseUrl verification to avoid connection issues
+    experimentalRunAllSpecs: true,
+    
     // Environment variables
     env: {
       coverage: false,

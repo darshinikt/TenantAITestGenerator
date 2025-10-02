@@ -29,6 +29,9 @@ A complete full-stack tenant management portal with comprehensive E2E testing us
 
 ## 🚀 Quick Start
 
+> **⚡ Super Quick**: Just run `npm run demo` and you're ready to test!  
+> **📖 Full Guide**: See [QUICK-START.md](QUICK-START.md) for all commands
+
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
@@ -48,30 +51,47 @@ npm install
 npx playwright install
 ```
 
-### Running the Application
+### 🎯 One-Command Demo
 
 ```bash
-# Start the backend server
-node simple-server.js
-
-# Server will run on http://localhost:3000
-# Open browser and navigate to http://localhost:3000
+# Start server + open Cypress in one command
+npm run demo
 ```
+
+This automatically:
+- ✅ Starts the backend server
+- ✅ Waits for server to be ready
+- ✅ Opens Cypress Test Runner
+- ✅ Ready to run any test with one click!
 
 ### Running Tests
 
 ```bash
-# Run Cypress E2E tests (interactive)
-npx cypress open
+# 🎯 EASIEST - Start server + open Cypress in one command
+npm run demo
 
-# Run Cypress tests (headless)
+# ⚡ Quick automated test run
+npm run test:quick
+
+# 🔥 Run all tests automatically
+npm run run:tests
+
+# 🎮 Interactive Cypress (manual control)
+npm run run:cypress
+```
+
+### Manual Commands (if needed)
+
+```bash
+# Start server only
+npm start
+
+# Run Cypress tests (server must be running)
+npx cypress open
 npx cypress run
 
 # Run Playwright tests
 npx playwright test
-
-# Run specific test file
-npx cypress run --spec "cypress/e2e/auth.cy.ts"
 ```
 
 ## 🏗️ Project Structure
@@ -155,35 +175,41 @@ Password: TenantPass123!
 
 ## 🧪 Running Different Test Scenarios
 
-### Interactive Testing (Recommended)
+### 🎯 **EASIEST - One Command Demo (RECOMMENDED)**
 ```bash
-# Open Cypress Test Runner
-npx cypress open
+npm run demo
+```
+- Starts server automatically
+- Opens Cypress Test Runner
+- Ready to click and run any test
+- Perfect for demonstrations
+
+### ⚡ **Quick Automated Testing**
+```bash
+# Run quick auth tests
+npm run test:quick
+
+# Run all E2E tests automatically
+npm run run:tests
+```
+
+### 🎮 **Interactive Testing**
+```bash
+# Start server + Cypress (manual control)
+npm run run:cypress
 
 # Select E2E Testing
 # Choose your browser
 # Run tests and watch them execute live
 ```
 
-### Headless Testing
+### 📱 **Manual Browser Testing**
 ```bash
-# Run all E2E tests
-npx cypress run
+# Start server
+npm start
 
-# Run specific test suite
-npx cypress run --spec "cypress/e2e/maintenance.cy.ts"
-
-# Run with different browser
-npx cypress run --browser firefox
-```
-
-### API Testing
-```bash
-# Run Playwright API tests
-npx playwright test
-
-# Run specific API test
-npx playwright test tests/api/
+# Open browser: http://localhost:3000
+# Login: john.doe@email.com / TenantPass123!
 ```
 
 ## � Configuration
@@ -303,6 +329,12 @@ The project generates comprehensive test reports including:
 
 ### Common Issues
 
+**Quick Solution - Use Easy Commands:**
+```bash
+# Kill any running processes and start fresh
+npm run demo
+```
+
 **Server not starting:**
 ```bash
 # Check if port 3000 is available
@@ -311,8 +343,8 @@ lsof -ti:3000
 # Kill process if needed
 kill -9 $(lsof -ti:3000)
 
-# Restart server
-node simple-server.js
+# Restart with easy command
+npm run demo
 ```
 
 **Tests failing:**
@@ -324,8 +356,8 @@ npx cypress cache clear
 rm -rf node_modules package-lock.json
 npm install
 
-# Reset database
-rm -f tenant_management.db
+# Try easy demo command
+npm run demo
 ```
 
 **Browser issues:**

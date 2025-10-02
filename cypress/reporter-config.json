@@ -1,0 +1,9 @@
+{
+  "reporterEnabled": "spec, json",
+  "specOptions": {
+    "displayStacktrace": "all"
+  },
+  "jsonOptions": {
+    "output": "cypress/reports/test-results.json"
+  }
+}

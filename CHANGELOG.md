@@ -105,11 +105,18 @@ All notable changes to the Tenant Management Portal with AI-Powered Testing proj
   - Efficient database queries
 
 ### Developer Experience
+- **Easy Run Commands**
+  - `npm run demo` - One command to start everything
+  - `npm run test:quick` - Quick automated test execution
+  - `npm run run:tests` - Full test suite automation
+  - `npm run run:cypress` - Interactive testing mode
+
 - **Scripts and Automation**
   - npm scripts for all common tasks
   - Automated browser installation
   - Database reset utilities
   - Test cleanup scripts
+  - Concurrent server and test execution
 
 - **Debugging Tools**
   - Cypress debugger integration

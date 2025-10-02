@@ -1,0 +1,67 @@
+[
+  {
+    "id": "pay_001",
+    "amount": 1200.00,
+    "date": "2025-09-01",
+    "dueDate": "2025-09-01",
+    "type": "rent",
+    "status": "paid",
+    "method": "credit_card",
+    "transactionId": "txn_abc123",
+    "description": "Monthly rent payment for September 2025",
+    "lateFee": 0.00,
+    "receiptUrl": "/receipts/pay_001.pdf"
+  },
+  {
+    "id": "pay_002",
+    "amount": 1200.00,
+    "date": "2025-08-01",
+    "dueDate": "2025-08-01",
+    "type": "rent",
+    "status": "paid",
+    "method": "bank_transfer",
+    "transactionId": "txn_def456",
+    "description": "Monthly rent payment for August 2025",
+    "lateFee": 0.00,
+    "receiptUrl": "/receipts/pay_002.pdf"
+  },
+  {
+    "id": "pay_003",
+    "amount": 50.00,
+    "date": "2025-07-15",
+    "dueDate": "2025-07-10",
+    "type": "late_fee",
+    "status": "paid",
+    "method": "credit_card",
+    "transactionId": "txn_ghi789",
+    "description": "Late fee for July 2025 rent payment",
+    "lateFee": 50.00,
+    "receiptUrl": "/receipts/pay_003.pdf"
+  },
+  {
+    "id": "pay_004",
+    "amount": 1200.00,
+    "date": "2025-07-05",
+    "dueDate": "2025-07-01",
+    "type": "rent",
+    "status": "paid",
+    "method": "credit_card",
+    "transactionId": "txn_jkl012",
+    "description": "Monthly rent payment for July 2025 (paid late)",
+    "lateFee": 0.00,
+    "receiptUrl": "/receipts/pay_004.pdf"
+  },
+  {
+    "id": "pay_005",
+    "amount": 1200.00,
+    "date": null,
+    "dueDate": "2025-10-01",
+    "type": "rent",
+    "status": "pending",
+    "method": null,
+    "transactionId": null,
+    "description": "Monthly rent payment for October 2025",
+    "lateFee": 0.00,
+    "receiptUrl": null
+  }
+]

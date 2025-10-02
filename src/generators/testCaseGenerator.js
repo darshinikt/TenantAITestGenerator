@@ -214,50 +214,179 @@ Please generate complete, runnable test files with proper setup, teardown, and h
   }
 
   async generateAPITests(endpoints = []) {
-    console.log('🔧 Generating API tests...');
+    console.log('🔧 Generating AI-powered API tests...');
     
     const prompt = `
 Generate comprehensive API tests for a tenant management system with these endpoints:
-${endpoints.map(ep => `- ${ep.method} ${ep.path}: ${ep.description}`).join('\n')}
+${endpoints.map(ep => `- ${ep.method} ${ep.path}: ${ep.description}${ep.schema ? '\n  Schema: ' + JSON.stringify(ep.schema, null, 2) : ''}`).join('\n')}
 
-Include tests for:
-- Authentication and authorization
-- Input validation
-- Error handling
-- Data consistency
-- Performance benchmarks
-- Security (SQL injection, XSS prevention)
+Generate tests for BOTH Cypress (using cy.request()) and Playwright (using request API):
 
-Use both REST client tests and integration tests that work with the UI tests.
+**Test Coverage Required:**
+1. **CRUD Operations**: Create, Read, Update, Delete for each endpoint
+2. **Authentication**: Valid/invalid tokens, expired tokens
+3. **Input Validation**: Required fields, data types, boundaries
+4. **Error Handling**: 400, 401, 403, 404, 500 responses
+5. **Data Integrity**: Verify response schemas and data consistency
+6. **Performance**: Response time validation
+7. **Security**: SQL injection, XSS prevention tests
+
+**Frameworks:**
+- Cypress: Use cy.request() with custom commands (AddTenant, GetTenant, etc.)
+- Playwright: Use request context with equivalent test structure
+
+**JSON Schema Validation:**
+- Validate response structure against expected schemas
+- Support for dynamic fields (IDs, timestamps) that should be ignored
+- Nested JSON comparison utilities
+
+**Reusable Patterns:**
+- Fixtures for request/response data
+- Custom commands for common API operations
+- Error response validation helpers
+- Authentication token management
+
+Please generate complete, runnable test files with proper setup, fixtures, and utilities.
 `;
 
     try {
       const response = await this.openai.chat.completions.create({
         model: process.env.AI_MODEL || 'gpt-4',
         messages: [
-          { role: 'system', content: 'Generate comprehensive API tests for a tenant management system.' },
+          { 
+            role: 'system', 
+            content: 'You are an expert API test automation engineer. Generate comprehensive, production-ready API tests using modern testing practices with both Cypress and Playwright.' 
+          },
           { role: 'user', content: prompt }
         ],
         temperature: 0.7,
-        max_tokens: 3000
+        max_tokens: 4000
       });
 
       const apiTests = response.choices[0].message.content;
       
-      // Save API tests
-      const apiTestFile = path.join(process.cwd(), 'tests', 'api', 'generated-api.spec.ts');
-      await fs.mkdir(path.dirname(apiTestFile), { recursive: true });
-      await fs.writeFile(apiTestFile, apiTests, 'utf8');
+      // Save API tests for both frameworks
+      await this.saveAPITests(apiTests, endpoints);
       
-      console.log(`✅ API tests saved to: ${apiTestFile}`);
+      console.log(`✅ API tests generated successfully!`);
       
       return {
         testCount: this.countTests(apiTests),
         content: apiTests,
+        endpoints: endpoints.length,
+        frameworks: ['cypress', 'playwright'],
         saved: true
       };
     } catch (error) {
       console.error('❌ Error generating API tests:', error);
+      throw error;
+    }
+  }
+
+  async saveAPITests(content, endpoints) {
+    try {
+      // Create API test directories
+      const cypressApiDir = path.join(process.cwd(), 'cypress', 'e2e', 'api');
+      const playwrightApiDir = path.join(process.cwd(), 'tests', 'api');
+      
+      await fs.mkdir(cypressApiDir, { recursive: true });
+      await fs.mkdir(playwrightApiDir, { recursive: true });
+      
+      // Extract and save Cypress API tests
+      const cypressContent = this.extractFrameworkTests(content, 'cypress') || content;
+      const cypressFile = path.join(cypressApiDir, 'tenant-api.cy.ts');
+      await fs.writeFile(cypressFile, cypressContent, 'utf8');
+      console.log(`✅ Cypress API tests saved to: ${cypressFile}`);
+      
+      // Extract and save Playwright API tests
+      const playwrightContent = this.extractFrameworkTests(content, 'playwright') || content;
+      const playwrightFile = path.join(playwrightApiDir, 'tenant-api.spec.ts');
+      await fs.writeFile(playwrightFile, playwrightContent, 'utf8');
+      console.log(`✅ Playwright API tests saved to: ${playwrightFile}`);
+      
+      // Save API schemas and fixtures
+      await this.saveAPIFixtures(endpoints);
+      
+    } catch (error) {
+      console.error('❌ Error saving API tests:', error);
+    }
+  }
+
+  async saveAPIFixtures(endpoints) {
+    const fixturesDir = path.join(process.cwd(), 'cypress', 'fixtures', 'api');
+    await fs.mkdir(fixturesDir, { recursive: true });
+    
+    // Create fixtures for each endpoint
+    for (const endpoint of endpoints) {
+      const fixtureName = endpoint.path.replace(/[\/{}]/g, '_').replace(/^_|_$/g, '');
+      const fixture = {
+        endpoint: endpoint,
+        request: endpoint.requestExample || {},
+        response: endpoint.responseExample || {},
+        schema: endpoint.schema || {}
+      };
+      
+      const fixtureFile = path.join(fixturesDir, `${fixtureName}.json`);
+      await fs.writeFile(fixtureFile, JSON.stringify(fixture, null, 2), 'utf8');
+    }
+    
+    console.log(`✅ API fixtures saved to: ${fixturesDir}`);
+  }
+
+  async generateFromSchema(schema, operation = 'CRUD') {
+    console.log('📋 Generating API tests from JSON schema...');
+    
+    const prompt = `
+Analyze this JSON schema and generate comprehensive API tests:
+
+Schema: ${JSON.stringify(schema, null, 2)}
+
+Generate ${operation} operation tests for both Cypress and Playwright:
+
+1. **Create Tests**: POST with valid/invalid data
+2. **Read Tests**: GET with various query parameters
+3. **Update Tests**: PUT/PATCH with partial/full updates
+4. **Delete Tests**: DELETE with validation
+
+Include:
+- Schema validation for responses
+- Error handling for malformed requests
+- Boundary testing for fields
+- Security testing for injection attacks
+- Performance benchmarks
+
+Focus on the tenant management domain with realistic test scenarios.
+`;
+
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: process.env.AI_MODEL || 'gpt-4',
+        messages: [
+          { role: 'system', content: 'Generate API tests from JSON schema with focus on comprehensive coverage.' },
+          { role: 'user', content: prompt }
+        ],
+        temperature: 0.6,
+        max_tokens: 3500
+      });
+
+      const schemaTests = response.choices[0].message.content;
+      
+      // Save schema-based tests
+      const schemaTestFile = path.join(process.cwd(), 'tests', 'api', 'schema-generated.spec.ts');
+      await fs.mkdir(path.dirname(schemaTestFile), { recursive: true });
+      await fs.writeFile(schemaTestFile, schemaTests, 'utf8');
+      
+      console.log(`✅ Schema-based tests saved to: ${schemaTestFile}`);
+      
+      return {
+        testCount: this.countTests(schemaTests),
+        content: schemaTests,
+        schema: schema,
+        operation: operation,
+        saved: true
+      };
+    } catch (error) {
+      console.error('❌ Error generating schema tests:', error);
       throw error;
     }
   }
